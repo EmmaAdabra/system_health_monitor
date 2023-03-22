@@ -8,7 +8,7 @@ def check_disk_space(disk, min_gb, min_parcent):
 	# gets sizes of free, used and total of the disk 
 	disk_stat = shutil.disk_usage(disk)
 	# calculate the parcentage of free disk
-	parcent_free_disk = 100 * (disk_stat.free / disk_stat.total)
+	free_disk_parcent = 100 * (disk_stat.free / disk_stat.total)
 	# calculate the size of free disk in gigabyte
 	free_disk_size = disk_stat.free / 1024**3
 
