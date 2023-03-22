@@ -12,7 +12,7 @@ def check_disk_space(disk, min_gb, min_parcent):
 	# calculate the size of free disk in gigabyte
 	free_disk_size = disk_stat.free / 1024**3
 
-	if parcent_free_disk < min_parcent or free_disk_size < min_gb:
+	if free_disk_size < min_gb or parcent_free_disk < min_parcent:
 		return False
 
 	return True
