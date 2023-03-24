@@ -20,6 +20,11 @@ def check_disk_space(disk, min_gb, min_percent):
     return False
 
 
+def check_roof_full():
+    """Return True if the root partition is full and False otherwise"""
+    return check_disk_space(disk="/", min_gb=2, min_percent=10)
+
+
 def main():
     if check_disk_space(disk="/", min_gb=2, min_percent=10):
         print("ERROR: Not enough disk space.")
