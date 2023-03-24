@@ -1,2 +1,2 @@
-# Check Disk free space
+# Check for Pending Reboot and Disk Free Space
 

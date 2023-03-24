@@ -6,7 +6,7 @@ import os
 
 
 def check_disk_space(disk, min_gb, min_parcent):
-    """Returns True if there is enough free disk space and Fale otherwise"""
+    """Returns True if there is enough free disk space and False if otherwise"""
     # gets sizes of free, used and total of the disk
     disk_stat = shutil.disk_usage(disk)
     # calculate the parcentage of free disk
