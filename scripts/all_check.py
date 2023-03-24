@@ -20,7 +20,12 @@ def check_disk_space(disk, min_gb, min_percent):
     return False
 
 
-if check_disk_space(disk="/", min_gb=2, min_percent=10):
-    print("ERROR: Not enough disk space.")
-    sys.exit(1)
-print("Everything is ok")
+def main():
+    if check_disk_space(disk="/", min_gb=2, min_percent=10):
+        print("ERROR: Not enough disk space.")
+        sys.exit(1)
+    print("Everything is ok")
+
+
+if __name__ == "__main__":
+    main()
