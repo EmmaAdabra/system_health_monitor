@@ -37,13 +37,16 @@ def main():
         (check_root_full(), "Root Partition full"),
     ]
 
+    everything_ok = True
     # iterate through checks list, print the check message found to be true
     # and exit with 1
     for check, msg in checks:
         if check:
             print(msg)
-            sys.exit(1)
+            everything_ok = False
 
+    if not everything_ok:
+        exit(1)
     # print if all check are False
     print("Everything is ok")
 
