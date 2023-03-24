@@ -20,15 +20,31 @@ def check_disk_space(disk, min_gb, min_percent):
     return False
 
 
-def check_roof_full():
+def check_root_full():
     """Return True if the root partition is full and False otherwise"""
     return check_disk_space(disk="/", min_gb=2, min_percent=10)
 
 
+def check_reboot():
+    """Return True if there is a pending reboot and false if otherwise"""
+    return os.path.exists("/run/boot-required")
+
+
 def main():
-    if check_disk_space(disk="/", min_gb=2, min_percent=10):
-        print("ERROR: Not enough disk space.")
-        sys.exit(1)
+    # a list of tuple containing checks and message
+    checks = [
+        (check_reboot(), "Pending Reboot"),
+        (check_root_full(), "Root Partition full"),
+    ]
+
+    # iterate through checks list, print the check message found to be true
+    # and exit with 1
+    for check, msg in checks:
+        if check:
+            print(msg)
+            sys.exit(1)
+
+    # print if all check are False
     print("Everything is ok")
 
 
