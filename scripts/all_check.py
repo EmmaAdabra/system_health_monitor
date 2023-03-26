@@ -30,11 +30,17 @@ def check_reboot():
     return os.path.exists("/run/boot-required")
 
 
+def check_cpu_load():
+    """Returns True if cpu usage if over 70% and False if otherwise"""
+    return psutil.cpu_percent(1) > 75
+
+
 def main():
     # a list of tuple containing checks and message
     checks = [
         (check_reboot(), "Pending Reboot"),
         (check_root_full(), "Root Partition full"),
+        (check_cpu_load(), "CPU is Overloaded"),
     ]
 
     everything_ok = True
