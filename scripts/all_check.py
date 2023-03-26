@@ -33,13 +33,13 @@ def check_reboot():
 
 def check_cpu_load():
     """Returns True if cpu usage if over 70% and False if otherwise"""
-    return psutil.cpu_percent(1) > 7
+    return psutil.cpu_percent(1) > 75
 
 
 def check_no_network():
     """Return false if it fails to resolve a server url and true otherwise"""
     try:
-        socket.gethostbyname("www.goo*45gle.com")
+        socket.gethostbyname("www.google.com")
         return False
     except:
         return True
