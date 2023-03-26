@@ -3,6 +3,7 @@
 import sys
 import shutil
 import os
+import socket
 
 
 def check_disk_space(disk, min_gb, min_percent):
@@ -32,8 +33,17 @@ def check_reboot():
 
 def check_cpu_load():
     """Returns True if cpu usage if over 70% and False if otherwise"""
-    return psutil.cpu_percent(1) > 75
+    return psutil.cpu_percent(1) > 7
 
+
+def check_no_network():
+    """Return false if it fails to resolve a server url and true otherwise"""
+    try:
+        socket.gethostbyname("www.google.com")
+        return False
+    except:
+        return True
+    
 
 def main():
     # a list of tuple containing checks and message
@@ -41,9 +51,10 @@ def main():
         (check_reboot(), "Pending Reboot"),
         (check_root_full(), "Root Partition full"),
         (check_cpu_load(), "CPU is Overloaded"),
+        (check_no_network(), "No Working Network")
     ]
-
     everything_ok = True
+
     # iterate through checks list, print the check message found to be true
     # and exit with 1
     for check, msg in checks:
