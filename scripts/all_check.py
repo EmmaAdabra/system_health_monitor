@@ -4,7 +4,7 @@ import sys
 import shutil
 import os
 import socket
-
+import psutil
 
 def check_disk_space(disk, min_gb, min_percent):
     """Returns True if amount of free disk space is less than min_gb or
@@ -39,7 +39,7 @@ def check_cpu_load():
 def check_no_network():
     """Return false if it fails to resolve a server url and true otherwise"""
     try:
-        socket.gethostbyname("www.google.com")
+        socket.gethostbyname("www.goo*45gle.com")
         return False
     except:
         return True
@@ -63,7 +63,7 @@ def main():
             everything_ok = False
 
     if not everything_ok:
-        exit(1)
+        sys.exit(1)
     # print if all check are False
     print("Everything is ok")
 
