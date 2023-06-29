@@ -87,9 +87,9 @@ def output_checks(reports):
         else:
             msg = "Pc in good health"
             if date["date"] != None:
-                file.writelines("{}{}{}".format(date_text, time, msg))
+                file.writelines("{}{}{}\n\n".format(date_text, time, msg))
             else:
-                file.writelines("{}{}".format(time, msg))
+                file.writelines("{}{}\n\n".format(time, msg))
 
 
 def main():
