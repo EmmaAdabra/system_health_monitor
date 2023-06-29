@@ -4,7 +4,7 @@ import shutil
 import os
 import socket
 import psutil
-from current_date import current_date
+from date_helper import current_date
 
 
 def check_free_disk():
