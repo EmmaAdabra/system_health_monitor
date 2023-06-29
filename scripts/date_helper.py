@@ -22,7 +22,7 @@ def current_date():
     dict_date = {"date": today_date, "time": current_time}
 
     if not os.path.exists(date_file_name):
-        write_date_file(dict_date, date_file_name)
+        write_date_file(today_date, date_file_name)
         return dict_date
     else:
         if get_date(date_file_name) == today_date:
