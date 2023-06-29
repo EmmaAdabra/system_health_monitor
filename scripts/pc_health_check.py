@@ -4,7 +4,6 @@ import shutil
 import os
 import socket
 import psutil
-from datetime import datetime
 from current_date import current_date
 
 
@@ -88,7 +87,7 @@ def output_checks(reports):
         else:
             msg = "Pc in good health"
             if date["date"] != None:
-                file.writelines("{}{}{}".format(date, time, msg))
+                file.writelines("{}{}{}".format(date_text, time, msg))
             else:
                 file.writelines("{}{}".format(time, msg))
 
