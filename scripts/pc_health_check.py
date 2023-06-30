@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from calendar import c
 import shutil
 import os
 import socket
@@ -65,18 +66,31 @@ def all_check(checks):
 def output_checks(reports):
     """print the time and result of all the checks"""
     date = current_date()
-    report_file = "pc_health-report.txt"
+    script_name = "pc_health_check.py"
+    report_dir_name = "pc_health_report"
+    report_file_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(script_name))),
+        report_dir_name + "/pc_health-report.txt",
+    )
+
+    def create_report_dir():
+        """this function create the pc_health_report dir that contains the pc_health-report.txt file"""
+        parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(script_name)))
+        report_dir = os.path.join(parent_dir, report_dir_name)
+        os.makedirs(report_dir, exist_ok=True)
+
     date_text = "--------------- {} ---------------{}".format(date["date"], "\n\n")
     time = "Time - " + date["time"] + "\n"
-    if not os.path.exists(report_file):
-        with open(report_file, mode="w"):
+    if not os.path.exists(report_file_path):
+        create_report_dir()
+        with open(report_file_path, mode="w"):
             pass
-    with open(report_file, mode="a") as file:
+    with open(report_file_path, mode="a") as file:
         if len(reports) != 0:
             report = "\n".join(reports)
             # write if script is executed for the first time or a new date
             msg_1 = "{}{}{}\n\n".format(date_text, time, report)
-            #write if script executed subsequently
+            # write if script executed subsequently
             msg_2 = "{}{}\n\n".format(time, report)
 
             if date["date"] != None:
