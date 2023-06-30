@@ -66,23 +66,14 @@ def all_check(checks):
 def output_checks(reports):
     """print the time and result of all the checks"""
     date = current_date()
-    script_name = "pc_health_check.py"
-    report_dir_name = "pc_health_report"
-    report_file_path = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(script_name))),
-        report_dir_name + "/pc_health-report.txt",
-    )
-
-    def create_report_dir():
-        """this function create the pc_health_report dir that contains the pc_health-report.txt file"""
-        parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(script_name)))
-        report_dir = os.path.join(parent_dir, report_dir_name)
-        os.makedirs(report_dir, exist_ok=True)
+    report_dir = "pc_health_report"
+    report_file = "pc_health-report.txt"
+    report_file_path = os.path.join(report_dir, report_file)
 
     date_text = "--------------- {} ---------------{}".format(date["date"], "\n\n")
     time = "Time - " + date["time"] + "\n"
     if not os.path.exists(report_file_path):
-        create_report_dir()
+        os.mkdir(report_dir)
         with open(report_file_path, mode="w"):
             pass
     with open(report_file_path, mode="a") as file:
